@@ -22,7 +22,7 @@ class DaiweidaiNode(Node):
         self.timer_period = 5
         self.timer = self.create_timer(self.timer_period,self.timer_callback)
         
-        # 初始化属性
+        # 初始化属性num1 和 num2
         self.num1 = 0
         self.num2 = 0
 
@@ -40,11 +40,11 @@ class DaiweidaiNode(Node):
         self.publisher.publish(msg)
         self.get_logger().info(f'播报今日伙食:{msg.data}')
 
-    # 接受者的回调函数
+    # 订阅者的回调函数
     def sub_callback(self,msg):
-        # 只计算当天吃的（即当次触发时的数量），不进行累计
+        # 计算当天吃的
         today_eat = self.num1 + self.num2
-        self.get_logger().info(f'今天吃了{today_eat}碗，收到消息：{msg.data}')
+        self.get_logger().info(f'今天吃了{today_eat}碗')
 
 # 初始化客户端
 def main(args = None):
@@ -57,5 +57,9 @@ def main(args = None):
     rclpy.spin(liangzi_node)
 
     # 关闭客户端
-    rclpy.shutdown()
 
+# colcon build
+# source install/setup.bash
+# ros2 run village_li liangzi_node
+
+# ros2 topic pub /total_wan std_msgs/msg/UInt32 
