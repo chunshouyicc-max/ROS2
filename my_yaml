@@ -1,0 +1,23 @@
+#points是任务中的多个巡逻点
+points:
+  
+  #到达坐标（1,2）停止5秒
+  - x: 1.0
+    y: 2.0
+    action: stop
+    time: 5
+
+	#到达坐标（6,6），转一圈
+  - x: 6.0
+    y: 6.0
+    action: rotate
+
+	#到达（10,0）加速
+  - x: 10.0
+    y: 0.0
+    action: speed_up
+
+	#最后返回原点
+  - x: 0.0
+    y: 0.0
+    action: finish
